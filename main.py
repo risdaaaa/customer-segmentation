@@ -13,6 +13,7 @@ from sklearn.metrics import silhouette_score
 from matplotlib.cm import get_cmap
 from math import pi
 
+
 # Cache for loading the dataset
 @st.cache_data
 def load_data():
@@ -48,14 +49,73 @@ min_date = df["InvoiceDate"].min()
 max_date = df["InvoiceDate"].max()
 
 with st.sidebar:
-    st.image("https://raw.githubusercontent.com/risdaaaa/clustering-project/refs/heads/main/logo%20cluster.jpg")
+    st.image("https://raw.githubusercontent.com/risdaaaa/clustering-project/refs/heads/main/logo%20cluster.jpg", width=200)
+    
+    # Add a stylish title to the sidebar
+    st.markdown("<h3 style='text-align: center; color: #4CAF50;'>Customer Segmentation</h3>", unsafe_allow_html=True)
+    
+    # Add a description under the title
+    st.markdown("<p style='text-align: center; color: #555;'>Select the date range for analysis and explore customer clusters.</p>", unsafe_allow_html=True)
+
+    # Date range input with better styling
     start_date, end_date = st.date_input(
-        label='Rentang Waktu', min_value=min_date,
+        label='Select Date Range', 
+        min_value=min_date,
         max_value=max_date,
-        value=[min_date, max_date]
+        value=[min_date, max_date],
+        key="date_range"
     )
+
     # Let user select the number of clusters
     n_clusters = st.slider("Select Number of Clusters", min_value=2, max_value=5, value=5)
+
+    # Styling the sidebar section
+    st.markdown("""
+        <style>
+            .sidebar .sidebar-content {
+                background-color: #f4f4f9;
+                padding: 10px;
+                border-radius: 10px;
+            }
+            .sidebar h1 {
+                font-size: 20px;
+                font-weight: bold;
+                color: #0073e6;
+                text-align: center;
+            }
+            .social-icons {
+                display: flex;
+                justify-content: space-evenly;
+                margin-top: 20px;
+                padding: 10px;
+                background-color: #eef2f3;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+            .social-icons img {
+                transition: transform 0.3s ease;
+            }
+            .social-icons img:hover {
+                transform: scale(1.2);
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
+    # Displaying social icons with a nice hover effect and custom style
+    st.markdown("""
+        <h1>Connect with Me</h1>
+        <div class="social-icons" style="padding: 10px; background-color: #eef2f3; border-radius: 10px; margin-top: 10px;">
+            <a href="https://github.com/risdaaaa" target="_blank">
+                <img src="https://img.icons8.com/ios-filled/50/000000/github.png" width="50" height="50"/>
+            </a>
+            <a href="https://www.linkedin.com/in/dwi-krisdanarti/" target="_blank">
+                <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" width="50" height="50"/>
+            </a>
+            <a href="mailto:dwikrisda2@gmail.com" target="_blank">
+                <img src="https://img.icons8.com/ios-filled/50/000000/email.png" width="50" height="50"/>
+            </a>
+        </div>
+    """, unsafe_allow_html=True)
 
 # Filter the dataset based on the selected date range
 main_df = filter_data_by_date(df, start_date, end_date)
@@ -787,7 +847,7 @@ with tab2:
     # Tight layout to avoid cut-off
     plt.tight_layout()
     st.pyplot(fig)
-
+    #=======================================================
     # Tambahkan radar chart untuk RFM Clusters
     def radar_chart_rfm(rfm, labels, n_clusters):
         categories = ['Recency', 'Frequency', 'Monetary']
@@ -842,3 +902,87 @@ with tab2:
     st.subheader("Radar Chart RFM Clusters")
     fig = radar_chart_rfm(rfm, rfm['Cluster'], n_clusters)
     st.pyplot(fig)
+
+        
+    # Function to add background color to each cluster
+    def add_background(color):
+        st.markdown(f"""
+        <style>
+        .cluster-box {{
+            background-color: {color};
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            color: white;
+        }}
+        </style>
+        """, unsafe_allow_html=True)
+
+    if n_clusters == 5:
+        st.write("### 🚀 Here is the analysis and recommendations for each cluster:")
+
+        # Cluster 0 - Dormant Customers
+        add_background("#f28d30")  # Orange background
+        st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
+        st.write("#### 1. Cluster 0 - \"Dormant Customers\" 😴")
+        st.write("**Characteristics:**")
+        st.write("Customers in this cluster rarely make purchases (low frequency), have low transaction values (low monetary), and have not shopped for a long time (high recency).")
+        st.write("**Recommendations:**")
+        st.write("- 🎁 Offer special promotions like discounts or coupons to re-engage these customers.")
+        st.write("- 📧 Send reminder emails or exclusive offers to reactivate them.")
+        st.write("- 🔄 Launch retention campaigns focusing on rebuilding engagement.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        # Cluster 1 - Engaged Shoppers
+        add_background("#3c8dbc")  # Blue background
+        st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
+        st.write("#### 2. Cluster 1 - \"Engaged Shoppers\" 🛍️")
+        st.write("**Characteristics:**")
+        st.write("These customers are moderately active with a medium purchase frequency and decent transaction value. They haven't shopped too long ago (low recency).")
+        st.write("**Recommendations:**")
+        st.write("- 🎯 Implement loyalty programs to keep them active, like reward points or exclusive offers.")
+        st.write("- 🔄 Run upselling and cross-selling campaigns to increase transaction value.")
+        st.write("- 🤝 Maintain good relationships with proactive customer service.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        # Cluster 2 - Loyal High-Value Customers
+        add_background("#27ae60")  # Green background
+        st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
+        st.write("#### 3. Cluster 2 - \"Loyal High-Value Customers\" 🏆")
+        st.write("**Characteristics:**")
+        st.write("These are your best customers. They are highly active (high frequency), have large transaction values (high monetary), and have recently made a purchase (very low recency).")
+        st.write("**Recommendations:**")
+        st.write("- 🎁 Reward their loyalty by offering exclusive access to new products or premium services.")
+        st.write("- 👑 Treat them as VIP customers with additional benefits to maintain long-term relationships.")
+        st.write("- 🌟 Encourage them to become brand ambassadors or provide testimonials.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        # Cluster 3 - At-Risk High-Value Customers
+        add_background("#e74c3c")  # Red background
+        st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
+        st.write("#### 4. Cluster 3 - \"At-Risk High-Value Customers\" ⚠️")
+        st.write("**Characteristics:**")
+        st.write("These customers have a medium purchase frequency, decent transaction value, but their last purchase was some time ago (medium recency).")
+        st.write("**Recommendations:**")
+        st.write("- 🔄 Offer incentives to encourage them to shop again, such as referral programs or time-limited discounts.")
+        st.write("- 🛒 Send personalized communications to attract their attention, such as product recommendations based on their purchase history.")
+        st.write("- 🎁 Offer bundling packages to increase transaction value.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        # Cluster 4 - Super VIPs
+        add_background("#8e44ad")  # Purple background
+        st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
+        st.write("#### 5. Cluster 4 - \"Super VIPs\" 🌟")
+        st.write("**Characteristics:**")
+        st.write("These are your super top-tier customers. They shop very frequently (very high frequency), have very large transaction values (very high monetary), and have made a recent purchase (very low recency).")
+        st.write("**Recommendations:**")
+        st.write("- 🏆 Offer special rewards like personalized services or exclusive discounts for bulk purchases.")
+        st.write("- 🎉 Involve them in exclusive events like product launches or special events.")
+        st.write("- 💬 Consider co-creation strategies, such as asking for their input on product or service development.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    else:
+        st.write("### ❌ The number of clusters is not optimal. Try selecting a higher number of clusters or adjust based on your analysis.")
+        st.write("📊 The right number of clusters will help you gain better insights for your business or analysis.")
+
+    
