@@ -49,7 +49,7 @@ min_date = df["InvoiceDate"].min()
 max_date = df["InvoiceDate"].max()
 
 with st.sidebar:
-    st.image("https://raw.githubusercontent.com/risdaaaa/clustering-project/refs/heads/main/logo%20cluster.jpg", width=200)
+    st.image("https://raw.githubusercontent.com/risdaaaa/customer-segmentation/refs/heads/main/logo%20cluster.jpg", width=200)
     
     # Add a stylish title to the sidebar
     st.markdown("<h3 style='text-align: center; color: #4CAF50;'>Customer Segmentation</h3>", unsafe_allow_html=True)
