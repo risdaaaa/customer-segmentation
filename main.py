@@ -927,7 +927,7 @@ with tab2:
         st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
         st.write("#### 1. Cluster 0 - \"Dormant Customers\" 😴")
         st.write("**Characteristics:**")
-        st.write("Customers in this cluster rarely make purchases (low frequency), have low transaction values (low monetary), and have not shopped for a long time (high recency).")
+        st.write("Customers in this cluster have high recency (104.5), low frequency (2.8), and low spend (514.4). They rarely make purchases and haven't shopped for a long time.")
         st.write("**Recommendations:**")
         st.write("- 🎁 Offer special promotions like discounts or coupons to re-engage these customers.")
         st.write("- 📧 Send reminder emails or exclusive offers to reactivate them.")
@@ -939,48 +939,49 @@ with tab2:
         st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
         st.write("#### 2. Cluster 1 - \"Engaged Shoppers\" 🛍️")
         st.write("**Characteristics:**")
-        st.write("These customers are moderately active with a medium purchase frequency and decent transaction value. They haven't shopped too long ago (low recency).")
+        st.write("These customers are highly engaged with a high frequency (84.9) of purchases, very high spend (29,749.9), and low recency (4.6).")
         st.write("**Recommendations:**")
-        st.write("- 🎯 Implement loyalty programs to keep them active, like reward points or exclusive offers.")
+        st.write("- 🎯 Implement loyalty programs to retain them, such as reward points or exclusive offers.")
         st.write("- 🔄 Run upselling and cross-selling campaigns to increase transaction value.")
         st.write("- 🤝 Maintain good relationships with proactive customer service.")
         st.markdown("</div>", unsafe_allow_html=True)
 
-        # Cluster 2 - Loyal High-Value Customers
+        # Cluster 2 - At-Risk High-Value Customers
+        add_background("#e74c3c")  # Red background
+        st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
+        st.write("#### 3. Cluster 2 - \"At-Risk High-Value Customers\" ⚠️")
+        st.write("**Characteristics:**")
+        st.write("These customers have moderate frequency (11.2), high spend (3,007.1), but long time since last purchase (recency 27.6). They are high-value customers at risk of churning.")
+        st.write("**Recommendations:**")
+        st.write("- 🔄 Offer incentives such as discounts or referral programs to encourage them to return.")
+        st.write("- 🛒 Send personalized communications like product recommendations based on their purchase history.")
+        st.write("- 🎁 Offer bundling packages to increase transaction value.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        # Cluster 3 - Super VIPs
+        add_background("#8e44ad")  # Purple background
+        st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
+        st.write("#### 4. Cluster 3 - \"Super VIPs\" 🌟")
+        st.write("**Characteristics:**")
+        st.write("These are your top-tier customers with very high frequency (236.0) of purchases, the highest spend (91,622.1), and recent purchases (recency 0.0).")
+        st.write("**Recommendations:**")
+        st.write("- 🏆 Offer exclusive rewards like personalized services or premium discounts for bulk purchases.")
+        st.write("- 🎉 Involve them in exclusive events such as product launches or VIP experiences.")
+        st.write("- 💬 Consider co-creation strategies, asking for their input on new products or services.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        # Cluster 4 - Loyal High-Value Customers
         add_background("#27ae60")  # Green background
         st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
-        st.write("#### 3. Cluster 2 - \"Loyal High-Value Customers\" 🏆")
+        st.write("#### 5. Cluster 4 - \"Loyal High-Value Customers\" 🏆")
         st.write("**Characteristics:**")
-        st.write("These are your best customers. They are highly active (high frequency), have large transaction values (high monetary), and have recently made a purchase (very low recency).")
+        st.write("These customers have moderate frequency (28.5), high spend (9,166.0), but have not made recent purchases (recency 7.8). They are valuable, but need to be re-engaged.")
         st.write("**Recommendations:**")
-        st.write("- 🎁 Reward their loyalty by offering exclusive access to new products or premium services.")
+        st.write("- 🎁 Reward their loyalty with exclusive access to new products or premium services.")
         st.write("- 👑 Treat them as VIP customers with additional benefits to maintain long-term relationships.")
         st.write("- 🌟 Encourage them to become brand ambassadors or provide testimonials.")
         st.markdown("</div>", unsafe_allow_html=True)
 
-        # Cluster 3 - At-Risk High-Value Customers
-        add_background("#e74c3c")  # Red background
-        st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
-        st.write("#### 4. Cluster 3 - \"At-Risk High-Value Customers\" ⚠️")
-        st.write("**Characteristics:**")
-        st.write("These customers have a medium purchase frequency, decent transaction value, but their last purchase was some time ago (medium recency).")
-        st.write("**Recommendations:**")
-        st.write("- 🔄 Offer incentives to encourage them to shop again, such as referral programs or time-limited discounts.")
-        st.write("- 🛒 Send personalized communications to attract their attention, such as product recommendations based on their purchase history.")
-        st.write("- 🎁 Offer bundling packages to increase transaction value.")
-        st.markdown("</div>", unsafe_allow_html=True)
-
-        # Cluster 4 - Super VIPs
-        add_background("#8e44ad")  # Purple background
-        st.markdown("<div class='cluster-box'>", unsafe_allow_html=True)
-        st.write("#### 5. Cluster 4 - \"Super VIPs\" 🌟")
-        st.write("**Characteristics:**")
-        st.write("These are your super top-tier customers. They shop very frequently (very high frequency), have very large transaction values (very high monetary), and have made a recent purchase (very low recency).")
-        st.write("**Recommendations:**")
-        st.write("- 🏆 Offer special rewards like personalized services or exclusive discounts for bulk purchases.")
-        st.write("- 🎉 Involve them in exclusive events like product launches or special events.")
-        st.write("- 💬 Consider co-creation strategies, such as asking for their input on product or service development.")
-        st.markdown("</div>", unsafe_allow_html=True)
 
     else:
         st.write("### ❌ The number of clusters is not optimal. Try selecting a higher number of clusters or adjust based on your analysis.")
