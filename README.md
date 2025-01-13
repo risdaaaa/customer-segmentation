@@ -9,7 +9,7 @@ This project is an interactive web application for customer segmentation based o
 - Displays segmentation results in an easy-to-understand format.
 
 ## Demo Video
-[Watch the demo video](https://github.com/risdaaaa/customer-segmentation/blob/main/demo.mp4)
+[Watch the demo video](https://github.com/risdaaaa/customer-segmentation/blob/main/demo.gif)
 
 ## 🛠️ Installation Guide  
 1. Clone this repository:
