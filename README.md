@@ -8,6 +8,12 @@ This project is an interactive web application for customer segmentation based o
 - Selects the optimal number of clusters using the Elbow method.
 - Displays segmentation results in an easy-to-understand format.
 
+## Demo Video
+<video controls>
+  <source src="demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## 🛠️ Installation Guide  
 1. Clone this repository:
    ```bash
